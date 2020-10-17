@@ -2,15 +2,19 @@
   <div>
     <h1 class="title">this is overview</h1>
     <filter-test />
-    <hello-world />
+    <axios-test />
+    <router-test />
+    <vuex-test />
   </div>
 </template>
 <script>
 export default {
   name: "OverView",
   components: {
-    HelloWorld: () => import("@/components/HelloWorld"),
     FilterTest: () => import("@/components/FilterAddWatchTest"),
+    AxiosTest: () => import("@/components/AxiosTest"),
+    RouterTest: () => import("@/components/RouterTest"),
+    VuexTest: () => import("@/components/VuexTest"),
   },
 };
 </script>
