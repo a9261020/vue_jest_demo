@@ -30,13 +30,23 @@ describe("RouterTest.vue", () => {
     expect(wrapper.exists()).toBe(true);
   });
 
-  it("when button is clicked goVIPs will be called", () => {
-    const mock = jest.fn();
-    wrapper.setMethods({ goVIPs: mock });
+  it("when button is clicked goVIPs will be called", async () => {
+    // const mock = jest.fn();
+    // wrapper.setMethods({ goVIPs: mock });
+    // const routerButton = wrapper.find(".router app-button-stub");
+    // routerButton.vm.$emit("click");
+    // expect(mock).toBeCalled();
+    // expect(mock).toHaveBeenCalledTimes(1);
+
+    const spy = jest.spyOn(RouterTest.methods, "goVIPs");
+    wrapper = shallowMount(RouterTest, {
+      stubs: ["app-button","el-input"],
+      mocks: { $route, $router },
+    });
     const routerButton = wrapper.find(".router app-button-stub");
-    routerButton.vm.$emit("click");
-    expect(mock).toBeCalled();
-    expect(mock).toHaveBeenCalledTimes(1);
+    await routerButton.vm.$emit("click");
+    expect(spy).toBeCalled();
+    expect(spy).toBeCalledTimes(1);
   });
 
   it("goVIPs() is called", () => {

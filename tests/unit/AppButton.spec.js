@@ -60,15 +60,22 @@ describe("AppButton test", () => {
   //   ? func測試
   //   ? 點擊按鈕時，觸發事件
   it("func test", () => {
+    // wrapper = shallowMount(AppButton);
+    // const mock = jest.fn();
+    // wrapper.setMethods({
+    //   onClick: mock,
+    // });
+    // const button = wrapper.find("button");
+    // button.trigger("click");
+    // expect(mock).toBeCalled();
+    // expect(mock).toBeCalledTimes(1);
+
+    const spy = jest.spyOn(AppButton.methods, "onClick");
     wrapper = shallowMount(AppButton);
-    const mock = jest.fn();
-    wrapper.setMethods({
-      onClick: mock,
-    });
     const button = wrapper.find("button");
     button.trigger("click");
-    expect(mock).toBeCalled();
-    expect(mock).toBeCalledTimes(1);
+    expect(spy).toBeCalled();
+    expect(spy).toBeCalledTimes(1);
   });
 
   //   ? 測試$emit
@@ -114,8 +121,8 @@ describe("AppButton test", () => {
         namedSlot: `<span>i am slots html</span>`,
       },
     });
-    const button = wrapper.find("button");
-    expect(button.contains("span")).toBe(true);
+    const button = wrapper.find("button span");
+    expect(button.exists()).toBe(true);
     const span = wrapper.find("button span");
     expect(span.text()).toBe("i am slots html");
   });
@@ -129,14 +136,14 @@ describe("AppButton test", () => {
         scopedSlot: `<span slot-scope="foo">{{foo.user.lastName}} </span>`,
       },
     });
-    const button = wrapper.find("button");
-    expect(button.contains("span")).toBe(true);
+    const button = wrapper.find("button span");
+    expect(button.exists()).toBe(true);
     const span = wrapper.find("button span");
     expect(span.text()).toBe("holy");
   });
   // ?  測試DOM
   it("DOM test", () => {
     wrapper = shallowMount(AppButton);
-    expect(wrapper.contains("button")).toBeTruthy();
+    expect(wrapper.find("button")).toBeTruthy();
   });
 });

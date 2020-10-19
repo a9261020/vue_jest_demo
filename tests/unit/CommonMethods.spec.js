@@ -11,7 +11,6 @@ describe("CommonMethods.js", () => {
   // 測試應該包含函數的所有可能性
   it("checkWidth()", () => {
     // 不傳入參數，默認使用window.document.body.offsetWidth，在測試環境下都為0
-    console.log(checkWidth());
     expect(checkWidth()).toBe(true);
     expect(checkWidth(1024)).toBe(true);
     expect(checkWidth(1025)).toBe(false);

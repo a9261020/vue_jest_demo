@@ -45,13 +45,20 @@ describe("Header.vue", () => {
   //   測試collapseChage()
   //   點折疊側邊欄按鈕，正確觸發collapseChage函數
   it("collapseChage test", () => {
-    const mock = jest.fn();
-    wrapper.setMethods({
-      collapseChage: mock,
-    });
-    wrapper.find(".collapse-btn").trigger("click");
-    expect(mock).toBeCalled();
-    expect(mock).toBeCalledTimes(1);
+    // const mock = jest.fn();
+    // wrapper.setMethods({
+    //   collapseChage: mock,
+    // });
+    // wrapper.find(".collapse-btn").trigger("click");
+    // expect(mock).toBeCalled();
+    // expect(mock).toBeCalledTimes(1);
+
+    const spy = jest.spyOn(Header.methods, "collapseChage");
+    wrapper = shallowMount(Header);
+    const button = wrapper.find(".collapse-btn");
+    button.trigger("click");
+    expect(spy).toBeCalled();
+    expect(spy).toBeCalledTimes(1);
   });
 
   //   測試 collapseChage() 執行結果測試eventHub

@@ -47,12 +47,22 @@ describe("Filter Test", () => {
   });
 
   it("when button is clicked changeShow will be called", async () => {
-    const mock = jest.fn();
-    wrapper.setMethods({ changeShow: mock });
+    // const mock = jest.fn();
+    // wrapper.setMethods({ changeShow: mock });
+    // const axiosButton = wrapper.find(".filter app-button-stub");
+    // await axiosButton.vm.$emit("click");
+    // expect(mock).toBeCalled();
+    // expect(mock).toHaveBeenCalledTimes(1);
+
+    // The problem is that the component is rendered before you spy on it, and so the changeShow is already bound to the original.
+    // 要先spy 才能 shallowMount / mount 不然會有問題。
+    // https://github.com/enzymejs/enzyme/issues/365
+    const spy = jest.spyOn(FilterTest.methods, "changeShow");
+    wrapper = shallowMount(FilterTest, { localVue, stubs: ["app-button"] });
     const axiosButton = wrapper.find(".filter app-button-stub");
     await axiosButton.vm.$emit("click");
-    expect(mock).toBeCalled();
-    expect(mock).toHaveBeenCalledTimes(1);
+    expect(spy).toBeCalled();
+    expect(spy).toBeCalledTimes(1);
   });
 
   it("called changeShow()", () => {

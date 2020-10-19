@@ -81,15 +81,28 @@ describe("VuexTest.vue", () => {
 
   // 測試mutationsDecrement()
   // 點擊按鈕測試mutationsDecrement()是否被調用
-  it("mutationsDecrement test", () => {
-    const btnMutationsMinus = wrapper.find(".mutationsMinus");
-    const mock = jest.fn();
-    wrapper.setMethods({
-      mutationsDecrement: mock,
+  it("mutationsDecrement test", async () => {
+    // setMethods 已經不建議使用，未來版本會移除
+    // const btnMutationsMinus = wrapper.find(".mutationsMinus");
+    // const mock = jest.fn();
+    // wrapper.setMethods({
+    //   mutationsDecrement: mock,
+    // });
+    // await btnMutationsMinus.vm.$emit("click");
+    // expect(mock).toBeCalled();
+    // expect(mock).toBeCalledTimes(1);
+
+    // 其他的寫法
+    const spy = jest.spyOn(VuexTest.methods, "mutationsDecrement");
+    wrapper = shallowMount(VuexTest, {
+      localVue,
+      store,
+      stubs: ["app-button"],
     });
-    btnMutationsMinus.vm.$emit("click");
-    expect(mock).toBeCalled();
-    expect(mock).toBeCalledTimes(1);
+    const btnMutationsMinus = wrapper.find(".mutationsMinus");
+    await btnMutationsMinus.vm.$emit("click");
+    expect(spy).toBeCalled();
+    expect(spy).toBeCalledTimes(1);
   });
 
   //   測試mutations
@@ -104,7 +117,6 @@ describe("VuexTest.vue", () => {
   //   測試偽造getters值是否存在於DOM中
   it("getters test", () => {
     const text = wrapper.find(".text");
-    console.log(getters.evenOrOdd());
     expect(text.text()).toContain(getters.evenOrOdd());
   });
 });
