@@ -23,6 +23,11 @@ const router = new Router({
           name: "vips",
           component: () => import("@/views/VIPs.vue"),
         },
+        {
+          path: "/users",
+          name: "users",
+          component: () => import("@/views/Users.vue"),
+        },
       ],
     },
   ],

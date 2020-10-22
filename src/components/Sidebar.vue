@@ -58,22 +58,22 @@ export default {
         {
           icon: "el-icon-tickets",
           index: "overview",
-          title: "系统概览",
+          title: "系統",
         },
         {
           icon: "el-icon-sort",
           index: "user",
-          title: "用户管理",
+          title: "用戶管理",
           subs: [
             {
               icon: "el-icon-arrow-right",
               index: "users",
-              title: "普通用户",
+              title: "普通用戶",
             },
             {
               icon: "el-icon-d-arrow-right",
               index: "vips",
-              title: "VIP 用户",
+              title: "VIP 用戶",
             },
           ],
         },

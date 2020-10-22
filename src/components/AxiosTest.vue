@@ -1,7 +1,7 @@
 <template>
-  <!-- Axios的单元测试例 -->
+  <!-- Axios的單元測試 -->
   <div class="example axios">
-    <h2 class="example_title">Axios的单元测试例</h2>
+    <h2 class="example_title">Axios的單元測試</h2>
     <app-button size="lg" @click="getData">从后台接口获取数据</app-button>
   </div>
 </template>

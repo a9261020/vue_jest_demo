@@ -5,7 +5,9 @@
     </div>
     <div class="logo">Unit-test-with-jest</div>
     <div class="tips">
-      本页面用于展示一些单元测试用例，供vue项目单元测试使用，布局样式等如有BUG，请忽略
+      這個專案是照著
+      <a href="https://github.com/holylovelqq/vue-unit-test-with-jest" style="color:#eee;text-decoration:underline">vue-unitTest-with-jest</a>
+      拿來練習用的，因為版本不同，寫法也有些差異。
     </div>
     <div class="user-info">
       <span class="el-dropdown-link">
