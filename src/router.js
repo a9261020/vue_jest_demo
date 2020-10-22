@@ -10,8 +10,23 @@ const router = new Router({
       children: [
         {
           path: "/",
-          name: "Layout",
+          name: "home",
           component: () => import("@/views/OverView.vue"),
+        },
+        {
+          path: "/overview",
+          name: "OverView",
+          component: () => import("@/views/OverView.vue"),
+        },
+        {
+          path: "/vips",
+          name: "vips",
+          component: () => import("@/views/VIPs.vue"),
+        },
+        {
+          path: "/users",
+          name: "users",
+          component: () => import("@/views/Users.vue"),
         },
       ],
     },

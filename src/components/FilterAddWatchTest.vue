@@ -1,17 +1,17 @@
 <template>
-  <!-- filter的单元测试例 -->
+  <!-- filter的單元測試 -->
   <div class="example filter">
-    <h2 class="example_title">filter和watch的单元测试例</h2>
+    <h2 class="example_title">filter和watch的單元測試</h2>
     <el-input
       class="input"
       v-model="userInput"
-      placeholder="输入长度大于7的内容，下方将显示过滤后内容"
+      placeholder="輸入長度大於7的內容，下方將顯示過濾後內容"
     ></el-input>
     <div v-show="toggleShow" class="text format">
       {{ userInput | formatText }}
     </div>
     <div v-show="!toggleShow" class="text noformat">{{ userInput }}</div>
-    <app-button @click="changeShow">切换显示方式</app-button>
+    <app-button @click="changeShow">切換顯示方式</app-button>
   </div>
 </template>
 <script>

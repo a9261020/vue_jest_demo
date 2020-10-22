@@ -1,5 +1,7 @@
-import { shallowMount } from "@vue/test-utils";
+import { shallowMount,createLocalVue } from "@vue/test-utils";
 import HelloWorld from "@/components/HelloWorld.vue";
+
+const localVue = createLocalVue();
 
 describe("HelloWorld.vue", () => {
   let wrapper;
@@ -42,12 +44,19 @@ describe("HelloWorld.vue", () => {
       // 會變成先跑完測試才去呼叫watch，這個時候就會出錯
 
       // 方式一 是直接去改變資料，vue本來就沒辦法監測到，要用$nextTick去更新
-      it("method1", (done) => {
+      // it("method1", (done) => {
+      //   wrapper.vm.inputValue = "foo";
+      //   wrapper.vm.$nextTick(() => {
+      //     expect(spy).toBeCalled();
+      //     done();
+      //   });
+      // });
+
+      // 更簡潔的寫法
+      it("method1 改寫", async () => {
         wrapper.vm.inputValue = "foo";
-        wrapper.vm.$nextTick(() => {
-          expect(spy).toBeCalled();
-          done();
-        });
+        await localVue.nextTick();
+        expect(spy).toBeCalled()
       });
 
       // 方式二 直接改變data的資料，並觸發watch，而且要await改變完之後
